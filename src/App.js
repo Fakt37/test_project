@@ -99,6 +99,7 @@ const App = () => {
             setCard(data);
         };
         getCard();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const lastCardIndex = currentPage * perPage;

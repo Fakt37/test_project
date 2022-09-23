@@ -1,5 +1,3 @@
-import { number } from "prop-types";
-import { useState } from "react";
 import Icon from "../icons/icons";
 import "./pagination.sass";
 
