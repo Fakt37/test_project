@@ -9,11 +9,13 @@
 		border: 0.5px solid rgba(25, 25, 25, 0.24)
 		border-radius: 20px
 		margin-right: 16px
-	& a
+		cursor: pointer
+	& span
 		text-decoration: none
 		font-size: 16px
 		line-height: 19px
 		color: #8791AA
+		cursor: pointer
 	&-num
 		display: flex
 		justify-content: center
@@ -23,12 +25,20 @@
 		background: rgba(25, 25, 25, 0.08)
 		border-radius: 20px
 		margin-right: 16px
+		&.active
+			background: #FFFFFF
+			box-shadow: 0px 4px 7px rgba(100, 177, 252, 0.3)
+			& span
+				color: #264576
 	&-right
 		padding: 3px 24px
 		width: 60px
 		height: 35px
 		border: 0.5px solid rgba(25, 25, 25, 0.24)
 		border-radius: 20px
+		cursor: pointer
 .icon-left, .icon-right
 	fill: rgb(25, 25, 25)
 	fill-opacity: 0.16
+	&.active
+		fill-opacity: 1

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import AppMenu from "./components/app-menu/app-menu";
 import SearchPanel from "./components/search-panel/search-panel";
@@ -90,8 +90,26 @@ const App = () => {
     const onFilterSelect = (filter) => {
         setFilter(filter);
     };
+    const [card, setCard] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [perPage] = useState(5);
 
-    const visibleData = filterPost(onSearch(data, term), filter);
+    useEffect(() => {
+        const getCard = () => {
+            setCard(data);
+        };
+        getCard();
+    }, []);
+
+    const lastCardIndex = currentPage * perPage;
+    const firstCardIndex = lastCardIndex - perPage;
+    const currentCard = card.slice(firstCardIndex, lastCardIndex);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const nextPage = () => setCurrentPage((prev) => prev + 1);
+    const prevPage = () => setCurrentPage((prev) => prev - 1);
+
+    const visibleData = filterPost(onSearch(currentCard, term), filter);
     return (
         <div className="App">
             <AppMenu />
@@ -107,7 +125,14 @@ const App = () => {
                 .
                 <SumCard sum={visibleData.length} />
                 <CardList data={visibleData} />
-                <Pagination />
+                <Pagination
+                    perPage={perPage}
+                    totalPage={card.length}
+                    paginate={paginate}
+                    nextPage={nextPage}
+                    prevPage={prevPage}
+                    currentPage={currentPage}
+                />
                 <div className="footer">
                     <div className="footer-logo">
                         <img

@@ -1,35 +1,50 @@
+import { number } from "prop-types";
+import { useState } from "react";
 import Icon from "../icons/icons";
 import "./pagination.sass";
 
-const Pagination = () => {
+const Pagination = ({
+    perPage,
+    totalPage,
+    paginate,
+    nextPage,
+    prevPage,
+    currentPage,
+}) => {
+    const pageNumber = [];
+
+    for (let i = 1; i <= Math.ceil(totalPage / perPage); i++) {
+        pageNumber.push(i);
+    }
+    const activePrev = currentPage <= 1;
+    const clazzPrev = activePrev ? "" : "active";
+
+    const activeNext = currentPage === pageNumber.length;
+    const clazzNext = activeNext ? "" : "active";
     return (
         <ul className="pagination">
-            <li className="pagination-left">
-                <a href="/#">
-                    <Icon name="left" size={10} />
-                </a>
+            <li className="pagination-left" onClick={prevPage}>
+                <span>
+                    <Icon name="left" opacity={clazzPrev} size={10} />
+                </span>
             </li>
-            <li className="pagination-num">
-                <a href="/#">1</a>
-            </li>
-            <li className="pagination-num">
-                <a className="active" href="/#">
-                    2
-                </a>
-            </li>
-            <li className="pagination-num">
-                <a href="/#">3</a>
-            </li>
-            <li className="pagination-num">
-                <a href="/#">4</a>
-            </li>
-            <li className="pagination-num">
-                <a href="/#">5</a>
-            </li>
-            <li className="pagination-right">
-                <a href="/#">
-                    <Icon name="right" size={10} />
-                </a>
+            {pageNumber.map((number) => {
+                const active = number === currentPage;
+                const clazz = active ? "active" : "";
+                return (
+                    <li
+                        className={`pagination-num ${clazz}`}
+                        key={number}
+                        onClick={() => paginate(number)}
+                    >
+                        <span>{number}</span>
+                    </li>
+                );
+            })}
+            <li className="pagination-right" onClick={nextPage}>
+                <span>
+                    <Icon name="right" opacity={clazzNext} size={10} />
+                </span>
             </li>
         </ul>
     );
