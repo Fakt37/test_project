@@ -18,12 +18,14 @@ const Pagination = ({
     }
     const activePrev = currentPage <= 1;
     const clazzPrev = activePrev ? "" : "active";
+    const clickPrev = !activePrev ? prevPage : "";
 
     const activeNext = currentPage === pageNumber.length;
     const clazzNext = activeNext ? "" : "active";
+    const clickNext = !activeNext ? nextPage : "";
     return (
         <ul className="pagination">
-            <li className="pagination-left" onClick={prevPage}>
+            <li className="pagination-left" onClick={clickPrev}>
                 <span>
                     <Icon name="left" opacity={clazzPrev} size={10} />
                 </span>
@@ -41,7 +43,7 @@ const Pagination = ({
                     </li>
                 );
             })}
-            <li className="pagination-right" onClick={nextPage}>
+            <li className="pagination-right" onClick={clickNext}>
                 <span>
                     <Icon name="right" opacity={clazzNext} size={10} />
                 </span>
