@@ -2,5 +2,9 @@
 	"emmet.optimizeStylesheetParsing": true,
 	"emmet.includeLanguages": {
 		"javascript": "javascriptreact"
-	}
+	},
+	"prettier.tabWidth": 4,
+	"vue3snippets.tabWidth": 4,
+	"editor.tabCompletion": "onlySnippets",
+	"emmet.triggerExpansionOnTab": true
 }

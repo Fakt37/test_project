@@ -1,17 +1,15 @@
 import Icon from "../icons/icons";
 import "./card-item.sass";
 
-const CardItem = () => {
+const CardItem = ({ title, region }) => {
   return (
     <div className="item-wrap">
       <img src="img/item-img.jpg" alt="item-img" className="item-img" />
       <div className="item-descr">
-        <div className="item-title">
-          Традиция исполнения якутского традиционного кругового танца "осуохай"
-        </div>
+        <div className="item-title">{title}</div>
         <div className="item-location">
           <Icon name="locationReg" size={16} />
-          Сахалинская область
+          {region}
         </div>
         <div className="item-icons">
           <Icon name="info" size={24} />

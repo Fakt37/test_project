@@ -1,7 +1,7 @@
 import "./sum-card.sass";
 
-const SumCard = () => {
-  return <div className="sum-card">Всего объектов: 55</div>;
+const SumCard = ({ sum }) => {
+    return <div className="sum-card">Всего объектов: {sum}</div>;
 };
 
 export default SumCard;
